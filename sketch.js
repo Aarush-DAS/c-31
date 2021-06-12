@@ -1,3 +1,40 @@
+var string = "Aarush";
+console.log(string);
+
+var num=100;
+console.log(num);
+
+var obj= true;
+console.log(obj);
+
+var obj1;
+console.log(obj1);
+
+obj1=null;
+console.log(obj1);
+
+var arr1=[1,2,3,4,5];
+console.log(arr1);
+
+var arr2=["Aarush", 13, true];
+console.log(arr2);
+
+var arr3=[[1,2],[2,3],[3,4]];
+console.log(arr3);
+
+console.log(arr3[0]);
+console.log(arr3[0][0]);
+
+arr3.push("Das");
+console.log(arr3);
+
+arr3.pop();
+console.log(arr3);
+
+
+
+
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,6 +44,7 @@ var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
+var gamestate="onsling";
 
 
 function preload() {
@@ -69,16 +107,20 @@ function draw(){
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    if(gamestate !=='launched'){
+        Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
+    
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gamestate="launched";
 }
 
 function keyPressed(){
     if(keyCode === 32){
-        slingshot.attach(bird.body);
+      //  slingshot.attach(bird.body);
     }
 }
